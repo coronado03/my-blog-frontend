@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
 export default function NotFound() {
-  const preRef = useRef(null)
+  const preRef = useRef<HTMLPreElement>(null)
 
   useEffect(() => {
     let A = 0, B = 0

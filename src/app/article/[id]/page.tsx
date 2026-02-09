@@ -1,5 +1,11 @@
 import Article from '@/components/article/article';
 
-export default async function ArticlePage({ params }) {
+type ArticlePageProps = {
+  params: {
+    id: string
+  };
+};
+
+export default async function ArticlePage({ params }: ArticlePageProps) {
   return <Article id={params.id} />;
 }

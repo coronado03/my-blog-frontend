@@ -5,6 +5,7 @@ type ArticleProps = {
 };
 
 export default async function Article({ id }: ArticleProps) {
+const unusedVar = 123;
   const article = await fetch('http://localhost:3001/article/2', {
   next: { revalidate: 60 },
   });

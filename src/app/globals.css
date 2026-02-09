@@ -1,26 +1,166 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme { 
+  /* Catppuccin Mocha Base Colors */
+  --color-background: #1e1e2e;
+  --color-foreground: #cdd6f4;
+  
+  --color-card: #181825;
+  --color-card-foreground: #cdd6f4;
+  
+  --color-popover: #181825;
+  --color-popover-foreground: #cdd6f4;
+  
+  --color-primary: #89b4fa;
+  --color-primary-foreground: #1e1e2e;
+  
+  --color-secondary: #6c7086;
+  --color-secondary-foreground: #cdd6f4;
+  
+  --color-muted: #313244;
+  --color-muted-foreground: #a6adc8;
+  
+  --color-accent: #f5c2e7;
+  --color-accent-foreground: #1e1e2e;
+  
+  --color-destructive: #f38ba8;
+  --color-destructive-foreground: #1e1e2e;
+  
+  --color-border: #89b4fa;
+  --color-input: #181825;
+  --color-ring: #89b4fa;
+  
+  /* Terminal specific colors */
+  --color-terminal-white: #cdd6f4;
+  --color-terminal-black: #1e1e2e;
+  --color-terminal-gray: #6c7086;
+  --color-terminal-light: #a6adc8;
+  --color-terminal-dark: #11111b;
+  
+  /* Catppuccin Mocha Accent Colors */
+  --color-catppuccin-rosewater: #f5e0dc;
+  --color-catppuccin-flamingo: #f2cdcd;
+  --color-catppuccin-pink: #f5c2e7;
+  --color-catppuccin-mauve: #cba6f7;
+  --color-catppuccin-red: #f38ba8;
+  --color-catppuccin-maroon: #eba0ac;
+  --color-catppuccin-peach: #fab387;
+  --color-catppuccin-yellow: #f9e2af;
+  --color-catppuccin-green: #a6e3a1;
+  --color-catppuccin-teal: #94e2d5;
+  --color-catppuccin-sky: #89dceb;
+  --color-catppuccin-sapphire: #74c7ec;
+  --color-catppuccin-blue: #89b4fa;
+  --color-catppuccin-lavender: #b4befe;
+}
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes terminal-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.98; }
+}
+
+@keyframes terminal-boot {
+  0% { opacity: 0; transform: scaleY(0); }
+  50% { opacity: 0.5; transform: scaleY(0.5); }
+  100% { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-family-terminal);
+  position: relative;
+}
+
+.terminal-screen {
+  background: var(--color-background);
+  border: 2px solid var(--color-terminal-white);
+  position: relative;
+}
+
+.terminal-border {
+  border: 2px solid var(--color-terminal-white);
+}
+
+.terminal-button {
+  background: var(--color-terminal-black);
+  border: 2px solid var(--color-terminal-white);
+  color: var(--color-terminal-white);
+  font-family: var(--font-family-terminal);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.1s linear;
+  position: relative;
+}
+
+.terminal-button:hover {
+  background: var(--color-terminal-white);
+  color: var(--color-terminal-black);
+}
+
+.terminal-button:active {
+  transform: translate(2px, 2px);
+}
+
+.terminal-text {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 2s steps(40, end);
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.terminal-glow {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.terminal-glow:hover {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.terminal-card {
+  background: var(--color-card);
+  border: 2px solid var(--color-terminal-white);
+  position: relative;
+}
+
+.terminal-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-terminal-white);
 }

@@ -12,7 +12,7 @@ const windows = [
 ];
 
 const TmuxStatusBar = () => {
-  const [time, setTime] = useState(null);
+  const [time, setTime] = useState<Date | null>(null);
   const [activeWindowIndex, setActiveWindowIndex] = useState(0);
   const pathname = usePathname();
 

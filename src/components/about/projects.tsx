@@ -29,8 +29,8 @@ export default function ProjectSection() {
 
   return (
 
-    <div className="flex flex-col">
-      <h3 className="text-xl text-catppuccin-lavender">
+    <div className="flex flex-col gap-3">
+      <h3 className="text-xl text-catppuccin-mauve">
         coronado@blog:~/projects$ <span className="text-terminal-light">ls -la </span>
       </h3>
       <div className="flex flex-row gap-6">

@@ -20,7 +20,7 @@ const Project = ({ title, version, paragraph, tags, github }: ProjectPropsType) 
         )}
       </div>
       <p className="text-terminal-light text-sm">{paragraph}</p>
-      <div className="flex flex-row gap-3 text-catppuccin-sky text-sm">
+      <div className="flex flex-row flex-wrap gap-3 text-catppuccin-sky text-sm">
         {tags.map((tag, i) => <span key={i}>{tag}</span>)}
       </div>
       <div className="border-t border-catppuccin-blue/40 pt-2">
@@ -65,9 +65,9 @@ export default function ProjectSection() {
   return (
     <div className="flex flex-col gap-3">
       <h3 className="text-xl text-catppuccin-blue">
-        coronado@blog <span className="text-catppuccin-red">:</span> <span className="text-catppuccin-teal">~/projects</span>  <span className="text-terminal-light">$ ls -la </span>
+        coronado@blog <span className="text-catppuccin-red">:</span> <span className="text-catppuccin-teal">~/projects</span> <span className="text-terminal-light">$ ls -la</span>
       </h3>
-      <div className="flex flex-row gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, i) => (
           <Project key={i} {...project} />
         ))}

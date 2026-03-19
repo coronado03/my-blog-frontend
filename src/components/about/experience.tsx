@@ -1,7 +1,7 @@
 export default function ExperienceSection() {
   return (
     <section className="p-4 px-0">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
         <div className="flex flex-col rounded-md overflow-hidden border border-catppuccin-blue">
           <div className="flex items-center gap-2 px-3 py-2 border-b border-catppuccin-blue bg-terminal-dark">
@@ -21,7 +21,7 @@ export default function ExperienceSection() {
             </p>
 
             <h3 className="text-catppuccin-mauve text-sm font-bold tracking-widest mb-3"># Skills</h3>
-            <div className="grid grid-cols-4 gap-x-3 gap-y-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-3 gap-y-3">
 
               <div className="flex flex-col gap-1">
                 <span className="text-terminal-gray text-xs italic mb-1">{`//`} languages</span>

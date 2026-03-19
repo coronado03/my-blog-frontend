@@ -11,21 +11,21 @@ export default function Books() {
     {
       title: "C: A Modern Approach",
       author: "K.N. King",
-      progress: 72, // ~page 300 of ~416 pages
+      progress: 72,
       status: "Reading",
       year: 2008
     },
     {
       title: "Computer Networking: A Top-Down Approach",
       author: "James F. Kurose & Keith W. Ross",
-      progress: 19, // ~page 115 of ~800 pages
+      progress: 19,
       status: "Reading",
       year: 2021
     },
     {
       title: "Effective TypeScript",
       author: "Dan Vanderkam",
-      progress: 2, // ~page 10
+      progress: 2,
       status: "Reading",
       year: 2019
     },
@@ -70,7 +70,7 @@ export default function Books() {
   return (
     <div className="min-h-[calc(100vh-64px)] bg-[var(--color-background)] text-[var(--color-foreground)] font-mono">
       <main className="flex-grow p-4 md:p-8 max-w-6xl mx-auto w-full">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 border border-[var(--color-border)] p-4 bg-black/10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 border border-[var(--color-border)] p-4 bg-black/10">
           <div className="space-y-1">
             <div className="text-xs uppercase opacity-50 font-bold">ACTIVE_READS</div>
             <div className="text-2xl text-[var(--color-catppuccin-mauve)]">03 <span className="text-sm opacity-50">Books</span></div>
@@ -87,12 +87,12 @@ export default function Books() {
 
         <div className="mb-6 flex items-center gap-2">
           <span className="text-[var(--color-catppuccin-mauve)]">➜</span>
-          <h1 className="text-xl font-bold uppercase tracking-widest border-r-4 border-[var(--color-catppuccin-sky)] pr-2 animate-pulse">
+          <h1 className="text-xl font-bold uppercase tracking-widest border-r-4 border-[var(--color-catppuccin-sky)] pr-2">
             Current Reading List
           </h1>
         </div>
 
-        <div className="overflow-x-auto border border-[var(--color-border)]/40">
+        <div className="hidden md:block overflow-x-auto border border-[var(--color-border)]/40">
           <table className="w-full text-left border-collapse">
             <thead className="bg-[var(--color-muted)] text-xs uppercase opacity-70 border-b border-[var(--color-border)]">
               <tr>
@@ -133,6 +133,33 @@ export default function Books() {
               })}
             </tbody>
           </table>
+        </div>
+
+        <div className="md:hidden flex flex-col divide-y divide-[var(--color-border)]/20 border border-[var(--color-border)]/40">
+          {books.map((book, index) => {
+            const progressBar = getProgressBar(book.progress);
+            return (
+              <div key={index} className="p-4 flex flex-col gap-2">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <div className="font-bold text-sm">{book.title}</div>
+                    <div className="text-xs opacity-60 mt-0.5">{book.author}</div>
+                  </div>
+                  <span className={`text-[10px] px-2 py-0.5 border shrink-0 ${getStatusColor(book.status)} uppercase`}>
+                    {book.status}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 font-mono text-xs">
+                  <div className="text-[var(--color-catppuccin-green)] tracking-tighter">
+                    [<span>{progressBar.filled}</span>
+                    <span className="opacity-30">{progressBar.empty}</span>]
+                  </div>
+                  <span className="opacity-60">{book.progress}%</span>
+                  <span className="ml-auto opacity-40 italic">{book.year}</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         <div className="mt-12 space-y-4">

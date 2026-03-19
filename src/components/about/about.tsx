@@ -3,10 +3,9 @@ import ExperienceSection from './experience';
 
 export default function About() {
   return (
-    <div className="flex flex-col gap-6 p-6 min-h-[calc(100vh-64px)]">
-
-      <div className="flex flex-row items-start gap-6">
-        <pre className="text-catppuccin-blue font-mono text-xs leading-tight flex-shrink-0">
+    <div className="flex flex-col gap-6 p-4 lg:p-6 min-h-[calc(100vh-64px)]">
+      <div className="flex flex-col lg:flex-row items-start gap-4 lg:gap-6">
+        <pre className="text-catppuccin-blue font-mono text-[6px] sm:text-[8px] lg:text-xs leading-tight flex-shrink-0 overflow-x-auto max-w-full">
 {`██████╗ ██████╗ ██████╗  ██████╗ ███╗   ██╗ █████╗ ██████╗  ██████╗ 
 ██╔════╝██╔═══██╗██╔══██╗██╔═══██╗████╗  ██║██╔══██╗██╔══██╗██╔═══██╗
 ██║     ██║   ██║██████╔╝██║   ██║██╔██╗ ██║███████║██║  ██║██║   ██║
@@ -14,7 +13,6 @@ export default function About() {
 ╚██████╗╚██████╔╝██║  ██║╚██████╔╝██║ ╚████║██║  ██║██████╔╝╚██████╔╝
  ╚═════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝  ╚═════╝`}
         </pre>
-
         <div className="flex flex-col gap-2 pt-1">
           <p className="text-terminal-light text-sm font-mono">
             <span className="text-catppuccin-green">coronado@blog:~$</span> cat welcome.txt
@@ -28,10 +26,8 @@ export default function About() {
           </p>
         </div>
       </div>
-
       <ExperienceSection />
       <ProjectSection />
-
     </div>
   );
 }

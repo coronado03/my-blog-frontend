@@ -1,18 +1,21 @@
 import { VscGithub } from "react-icons/vsc";
+import { VscRepoForked } from "react-icons/vsc";
+import { VscStarEmpty } from "react-icons/vsc";
+import { projects } from "@/content/data/projects";
+import { ProjectPropsType } from "@/types/project";
+import Link from "next/link";
 
-type ProjectPropsType = {
-  title: string;
-  version?: string;
-  paragraph: string;
-  tags: string[];
-  github: string;
-};
-
-const Project = ({ title, version, paragraph, tags, github }: ProjectPropsType) => {
+const Project = ({ title, version, paragraph, tags, github, websiteUrl, starCount, forkCount }: ProjectPropsType) => {
   return (
     <div className="flex flex-col border border-catppuccin-blue gap-3 p-3 hover:border-catppuccin-mauve transition-colors duration-150 rounded-md">
       <div className="flex items-center justify-between">
-        <p className="text-catppuccin-green text-xl">{title}</p>
+        {
+          websiteUrl ? (
+            <Link href={websiteUrl}>
+              <p className="text-catppuccin-green text-xl hover:underline">{title}</p>
+            </Link>
+          ) : <p className="text-catppuccin-green text-xl">{title}</p>
+        }
         {version && (
           <span className="text-catppuccin-peach text-xs border border-catppuccin-peach px-1.5 py-px">
             {version}
@@ -23,7 +26,7 @@ const Project = ({ title, version, paragraph, tags, github }: ProjectPropsType) 
       <div className="flex flex-row flex-wrap gap-3 text-catppuccin-sky text-sm">
         {tags.map((tag, i) => <span key={i}>{tag}</span>)}
       </div>
-      <div className="border-t border-catppuccin-blue/40 pt-2">
+      <div className="border-t border-catppuccin-blue/40 pt-2 flex flex-row">
         <a
           href={github}
           target="_blank"
@@ -33,33 +36,15 @@ const Project = ({ title, version, paragraph, tags, github }: ProjectPropsType) 
           <VscGithub size={14} />
           ~/view-source
         </a>
+        <div className="flex flex-row items-center text-xs ml-auto gap-1">
+          <VscStarEmpty size={14} /> {starCount}
+          <VscRepoForked size={14} /> {forkCount}
+        </div>
       </div>
     </div>
   );
 };
 
-const projects: ProjectPropsType[] = [
-  {
-    title: "my-blog",
-    version: "WIP",
-    paragraph: "Personal terminal-themed blog and portfolio built with Next.js and Tailwind. Designed to mimic my daily dev environment with planned Vim-style keyboard navigation.",
-    tags: ["#nextjs", "#typescript", "#markdown"],
-    github: "https://github.com/coronado03/my-blog",
-  },
-  {
-    title: "nvim",
-    paragraph: "My personal Neovim config built on lazy.nvim. Includes LSP, Treesitter, Telescope, and vim-tmux-navigator. Catppuccin Mocha themed, naturally.",
-    tags: ["#lua", "#neovim", "#dotfiles"],
-    github: "https://github.com/coronado03/nvim",
-  },
-  {
-    title: "FEED",
-    version: "DOWN",
-    paragraph: "A Dev.to-style blogging platform. Temporarily offline while migrating from Firebase to Supabase after Firebase removed their free tier.",
-    tags: ["#typescript", "#firebase", "#supabase"],
-    github: "https://github.com/coronado03/FEED-WEBSITE",
-  },
-];
 
 export default function ProjectSection() {
   return (

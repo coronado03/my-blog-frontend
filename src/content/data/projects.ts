@@ -8,8 +8,8 @@ export const projects: ProjectPropsType[] = [
     tags: ["#nextjs", "#typescript", "#opensource", "#community"],
     github: "https://github.com/coronado03/my-blog",
     websiteUrl: "https://vistula-network.com/",
-    starCount: 2,
-    forkCount: 3,
+    starCount: 6,
+    forkCount: 7,
   },
   {
     title: "nvim",

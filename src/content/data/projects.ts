@@ -6,7 +6,7 @@ export const projects: ProjectPropsType[] = [
     version: "1.0",
     paragraph: "Website with many users from Vistula University used as a connection hub for builders.",
     tags: ["#nextjs", "#typescript", "#opensource", "#community"],
-    github: "https://github.com/coronado03/my-blog",
+    github: "https://github.com/coronado03/vistula.network",
     websiteUrl: "https://vistula-network.com/",
     starCount: 6,
     forkCount: 7,

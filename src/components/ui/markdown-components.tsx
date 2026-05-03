@@ -84,7 +84,7 @@ export const markdownComponents: Components = {
   ),
   img: ({ src, alt }) => (
     <span className="border border-muted mb-6 bg-terminal-dark overflow-hidden block">
-      <img src={src} alt={alt} className="w-full object-cover max-h-72" />
+      <img src={src} alt={alt} className="w-full h-auto" />
       {alt && (
         <span className="text-center text-[11px] text-terminal-gray py-2 px-4 border-t border-muted tracking-wide block">
           {alt}

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const windows = [
-  { id: 0, name: "articles", link: "/" },
+  { id: 0, name: "blog", link: "/" },
 //  { id: 1, name: "logs", link: "/logs" },
   { id: 1, name: "about", link: "/about-me" },
   { id: 2, name: "books", link: "/book" },

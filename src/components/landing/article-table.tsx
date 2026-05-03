@@ -18,6 +18,18 @@ const ArticleTable = ({ files }: { files: Article[] }) => {
     }
   };
 
+  const getMode = (file: Article) =>
+    file.type === 'log' ? '-r--r--r--' : '-rw-r--r--';
+
+  const getGroup = (file: Article) =>
+    file.type === 'log' ? 'coronado@devlog' : 'coronado@blog';
+
+  const getFileName = (file: Article) =>
+    file.type === 'log' ? `log-${file.date}.md` : `${file.slug}.md`;
+
+  const getLinks = (file: Article) =>
+    file.type === 'log' ? String(file.tags?.length ?? 1) : '1';
+
   return (
     <div className="relative">
       <div className="hidden lg:grid grid-cols-[1fr_auto] gap-6">
@@ -41,17 +53,21 @@ const ArticleTable = ({ files }: { files: Article[] }) => {
                   onMouseEnter={() => setPreviewed(file)}
                   className="border-b border-muted last:border-0 hover:bg-muted transition-colors cursor-pointer"
                 >
-                  <td className="py-2 pr-4 text-catppuccin-mauve">-rw-r--r--</td>
-                  <td className="py-2 pr-4 text-catppuccin-yellow">1</td>
+                  <td className={`py-2 pr-4 ${file.type === 'log' ? 'text-catppuccin-teal' : 'text-catppuccin-mauve'}`}>
+                    {getMode(file)}
+                  </td>
+                  <td className="py-2 pr-4 text-catppuccin-yellow">{getLinks(file)}</td>
                   <td className="py-2 pr-4">
-                    <span className="text-catppuccin-blue">coronado@blog</span>
+                    <span className={file.type === 'log' ? 'text-catppuccin-teal' : 'text-catppuccin-blue'}>
+                      {getGroup(file)}
+                    </span>
                   </td>
                   <td className="py-2 pr-4 text-catppuccin-peach">{file.size}</td>
                   <td className="py-2 pr-4">
                     <span className="text-catppuccin-green">{file.date}</span>
                   </td>
                   <td className="py-2">
-                    {file.slug}.md
+                    {getFileName(file)}
                     <span className={`ml-2 text-xs text-catppuccin-red border border-catppuccin-red px-1.5 py-0.5 rounded ${file.slug === previewed.slug ? 'visible' : 'invisible'}`}>
                       ACTIVE
                     </span>
@@ -79,13 +95,17 @@ const ArticleTable = ({ files }: { files: Article[] }) => {
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-sm font-medium truncate">{file.slug}.md</span>
-                  <span className="text-xs text-catppuccin-mauve shrink-0">-rw-r--r--</span>
+                  <span className="text-sm font-medium truncate">{getFileName(file)}</span>
+                  <span className={`text-xs shrink-0 ${file.type === 'log' ? 'text-catppuccin-teal' : 'text-catppuccin-mauve'}`}>
+                    {getMode(file)}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 mt-1 text-xs flex-wrap">
                   <span className="text-catppuccin-green">{file.date}</span>
                   <span className="text-catppuccin-peach">{file.size}</span>
-                  <span className="text-catppuccin-blue">coronado@blog</span>
+                  <span className={file.type === 'log' ? 'text-catppuccin-teal' : 'text-catppuccin-blue'}>
+                    {getGroup(file)}
+                  </span>
                 </div>
                 {file.tags && file.tags.length > 0 && (
                   <div className="flex gap-1 mt-1.5 flex-wrap">
@@ -106,7 +126,7 @@ const ArticleTable = ({ files }: { files: Article[] }) => {
       {previewOpen && (
         <div className="lg:hidden fixed inset-0 z-50 bg-background/95 backdrop-blur-sm overflow-y-auto">
           <div className="sticky top-0 z-10 flex items-center justify-between px-4 py-3 bg-card border-b border-border">
-            <span className="text-sm text-terminal-gray">{previewed.slug}.md</span>
+            <span className="text-sm text-terminal-gray">{getFileName(previewed)}</span>
             <div className="flex gap-3">
               <button
                 onClick={() => router.push(`/article/${previewed.slug}`)}

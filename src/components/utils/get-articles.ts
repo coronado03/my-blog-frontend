@@ -24,6 +24,8 @@ export function getAllArticles(): Article[] {
       published: data.published,
       size: formattedFileSize,
       content,
+      type: data.type ?? 'article',
+      week: data.week,
     };
   });
 

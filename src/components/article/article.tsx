@@ -167,7 +167,6 @@ export default function Article({ fileName }: ArticleProps) {
     <div className="flex flex-col min-h-screen bg-background text-foreground font-mono text-sm">
       <div className="flex-1">
 
-        {/* Metadata card */}
         <div className="max-w-3xl mx-auto px-4 sm:px-8 py-3">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-0 border border-muted bg-card px-5 py-3.5">
             <div>
@@ -189,7 +188,6 @@ export default function Article({ fileName }: ArticleProps) {
           </div>
         </div>
 
-        {/* One row per raw markdown line */}
         {parsedLines.map((line, i) => (
           <div key={i} className="relative">
             <div className="hidden sm:block absolute left-2 top-0 text-[11px] text-muted select-none leading-[22px] pt-0.5">
@@ -201,7 +199,6 @@ export default function Article({ fileName }: ArticleProps) {
           </div>
         ))}
 
-        {/* Back link */}
         <div className="max-w-3xl mx-auto px-4 sm:px-8 mt-8 pb-10">
             <Link href="/">
               <button className="group flex items-center gap-2 text-terminal-gray hover:text-catppuccin-mauve transition-colors duration-150">

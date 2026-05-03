@@ -4,6 +4,7 @@ export type Article = {
   description: string;
   date: string;
   tags: string[];
+  type?: "article" | "log";
   slug: string;
   published: boolean;
   size: string;

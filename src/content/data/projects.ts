@@ -1,6 +1,15 @@
-import {ProjectPropsType} from "@/types/project";
+import { ProjectPropsType } from "@/types/project";
 
 export const projects: ProjectPropsType[] = [
+  {
+    title: "Clubify",
+    version: "0.1",
+    paragraph: "A platform for Polish universities to manage student clubs.",
+    tags: ["#saas"],
+    websiteUrl: "https://clubify.pl",
+    starCount: 0,
+    forkCount: 0,
+  },
   {
     title: "vistula.network",
     version: "1.0",

@@ -27,36 +27,47 @@ const Project = ({ title, version, paragraph, tags, github, websiteUrl, starCoun
         {tags.map((tag, i) => <span key={i}>{tag}</span>)}
       </div>
       <div className="border-t border-catppuccin-blue/40 pt-2 flex flex-row">
-        <a
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-terminal-gray text-xs hover:text-catppuccin-mauve transition-colors duration-150 w-fit"
-        >
-          <VscGithub size={14} />
-          ~/view-source
-        </a>
-        <div className="flex flex-row items-center text-xs ml-auto gap-1">
-          <VscStarEmpty size={14} /> {starCount}
-          <VscRepoForked size={14} /> {forkCount}
-        </div>
-      </div>
+        {github ? (
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-terminal-gray text-xs hover:text-catppuccin-mauve transition-colors duration-150 w-fit"
+          >
+            <VscGithub size={14} />
+            ~/view-source
+          </a>
+        ) : (
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-terminal-gray text-xs w-fit"
+          >
+            <VscGithub size={14} />
+            closed-source
+          </a>
+        )}
+            <div className="flex flex-row items-center text-xs ml-auto gap-1">
+              <VscStarEmpty size={14} /> {starCount}
+              <VscRepoForked size={14} /> {forkCount}
+            </div>
+          </div>
     </div>
-  );
+      );
 };
 
 
-export default function ProjectSection() {
+      export default function ProjectSection() {
   return (
-    <div className="flex flex-col gap-3">
-      <h3 className="text-xl text-catppuccin-blue">
-        coronado@blog <span className="text-catppuccin-red">:</span> <span className="text-catppuccin-teal">~/projects</span> <span className="text-terminal-light">$ ls -la</span>
-      </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, i) => (
-          <Project key={i} {...project} />
-        ))}
+      <div className="flex flex-col gap-3">
+        <h3 className="text-xl text-catppuccin-blue">
+          coronado@blog <span className="text-catppuccin-red">:</span> <span className="text-catppuccin-teal">~/projects</span> <span className="text-terminal-light">$ ls -la</span>
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, i) => (
+            <Project key={i} {...project} />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+      );
 }
